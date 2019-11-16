@@ -45,4 +45,4 @@ Finalmente veremos clustering, y alguno de los usos que pueden tener en la empre
 
 Si teneis cualquier duda podeis contactar conmigo:
 
-josrodmal0@gmail.com
+CORREO: josrodmal0@gmail.com
