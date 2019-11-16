@@ -27,10 +27,22 @@ El objetivo de esta sesión del curso es dar una visión sobre la inteligencia a
 
 Estudiaremos la regresión utilizando datos de 50 Startups!
 
-1. Regresión lineal simple 
-2. Regresión lineal múltiple
+1. Regresión lineal simple para estimación de beneficios
+2. Regresión lineal múltiple para estimación de beneficios
 
-A continuación veremos dos ejemplos del uso de algoritmos de clasificación, en concreto árboles de decisión, en la empresa.
+A continuación veremos dos ejemplos del uso de algoritmos de clasificación, en concreto árboles de decisión, en la empresa. ¡Detectaremos usuarios que traten de defraudarnos!
 
-1. ¡Detectaremos usuarios fraudulentos!
-2. 
+Este es un caso de clasificación muy interesante, no solo por la naturaleza de los datos que tenemos sino por el propio tema en sí.
+
+1. Detección de fraude mediante regresión logística
+2. Detección de fraude mediante árboles de decisión, y random forests.
+
+Finalmente veremos clustering, y alguno de los usos que pueden tener en la empresa como:
+
+1. Elige el mejor vino con inteligencia artificial
+2. Agrupar clientes según sus compras anuales
+
+
+Si teneis cualquier duda podeis contactar conmigo:
+
+josrodmal0@gmail.com
