@@ -7,8 +7,7 @@ A Machine Learning Course with Python
     :target: https://github.com/pyairesearch/machine-learning-for-everybody/pulls
 .. image:: https://badges.frapsoft.com/os/v2/open-source.png?v=103
     :target: https://github.com/ellerbrock/open-source-badge/
-.. image:: https://img.shields.io/github/contributors/machinelearningmindset/machine-learning-course.svg
-      :target: https://github.com/machinelearningmindset/machine-learning-course/graphs/contributors
+.. image:: https://img.shields.io/github/languages/top/joseroma/course-sesion-4
 .. image:: https://img.shields.io/badge/book-pdf-blue.svg
    :target: https://machinelearningmindset.com/wp-content/uploads/2019/06/machine-learning-course.pdf
 .. image:: https://img.shields.io/badge/official-documentation-green.svg
