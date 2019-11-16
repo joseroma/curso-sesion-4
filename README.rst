@@ -1,6 +1,6 @@
 
 ###################################################
-A Machine Learning Course with R
+Curso de Inteligencia artificial (IA) en R
 ###################################################
 
 .. image:: https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
