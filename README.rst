@@ -9,8 +9,8 @@ A Machine Learning Course with R
     :target: https://www.r-project.org/
 .. image:: https://img.shields.io/github/languages/top/joseroma/curso-sesion-4
     :target: https://www.r-project.org/
-.. image:: https://img.shields.io/badge/license-MIT-green
-    :target https://github.com/joseroma
+.. image:: https://img.shields.io/github/license/joseroma/curso-sesion-4
+    :target: https://github.com/joseroma
 .. image:: https://img.shields.io/github/followers/joseroma?style=social
     :target:  https://github.com/joseroma
 
