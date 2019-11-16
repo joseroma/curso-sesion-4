@@ -22,7 +22,7 @@ Curso de Inteligencia artificial (IA) en R
 ========================
 
 
-En este repositorio encontrarás todo el material utilizado para esta cuarta sesión del curso de BI. En esta sesión daremos una visión general sobre la inteligencia artificial, solo utilizando R.
+En este repositorio encontrarás todo el material utilizado para esta cuarta sesión del curso de business intelligence(BI). En esta sesión daremos una visión general sobre la inteligencia artificial usando R.
 
 Podeis acceder a la presentación que seguiremos durante esta sesión pulsando el siguiente botón.
 
@@ -30,7 +30,7 @@ Podeis acceder a la presentación que seguiremos durante esta sesión pulsando e
     :target:  https://docs.google.com/presentation/d/1HLmMW3--5wjOyIfANrL_j-_lqgCbOPuT47VrtNsBjl8/edit?usp=sharing
 
 
-Los modelos de inteligencia artificial que vamos a estudiar los podemos dividir en 3 grupos, que veremos en el siguiente orden: Regresión, Clasificación y Clustering o agrupación.
+Los modelos de inteligencia artificial que vamos a estudiar se dividen en 3 grupos.
 
 Regresión lineal
 ----------------
@@ -55,6 +55,12 @@ Finalmente veremos clustering, y alguno de los usos que pueden tener en la empre
 
 1. Elige el mejor vino, ¡con inteligencia artificial!
 2. Agrupar clientes según sus compras anuales
+
+Estructura del repositorio
+==========================
+
+
+
 
 
 Si teneis cualquier duda podeis contactar conmigo:
