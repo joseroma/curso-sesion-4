@@ -4,7 +4,9 @@ A Machine Learning Course with R
 ###################################################
 
 .. image:: https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
+    :target:  https://github.com/joseroma
 .. image:: https://badges.frapsoft.com/os/v2/open-source.png?v=103
+    :target: https://www.r-project.org/
 .. image:: https://img.shields.io/github/languages/top/joseroma/curso-sesion-4
     :target: https://www.r-project.org/
 .. image:: https://img.shields.io/github/followers/joseroma?style=social
