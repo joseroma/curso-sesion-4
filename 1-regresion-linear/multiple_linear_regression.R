@@ -122,6 +122,7 @@ plot(data)
 # Definimos fórmula (Necesitamos utilizar I() cuando queremos una potencia porque
 # el caracter ^ es un caracter especial es las formulas y así no da problemas)
 regresion = lm(formula = beneficio ~  inversion_I_D + inversion_marketing, data = data)
+# regresion = lm(formula = beneficio ~  ., data = data)
 
 # Pasamos a ver el resultado de este modelo
 summary(regresion)
