@@ -56,6 +56,8 @@ Finalmente veremos clustering, y alguno de los usos que pueden tener en la empre
 1. Elige el mejor vino, ¡con inteligencia artificial!
 2. Agrupar clientes según sus compras anuales
 
+
+==========================
 Estructura del repositorio
 ==========================
 
