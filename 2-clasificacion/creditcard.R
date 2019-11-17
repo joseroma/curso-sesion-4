@@ -120,11 +120,11 @@ cor(test_tmp)
 glm_model = glm(Class~.,train,family=binomial())
 
 ##   Resumen del modelo
-summary(modelo_glm)
+summary(glm_model)
 
 
 ##   Predecimos resultados
-lr.predict <- predict(modelo_glm, newdata = test, type="response")
+lr.predict <- predict(glm_model, newdata = test, type="response")
 
 #    Comprobamos resultados
 confusionMatrix(as.factor(round(lr.predict)),as.factor(test$Class), positive = "1")
