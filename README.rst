@@ -45,8 +45,8 @@ Clasificación
 
 A continuación veremos dos ejemplos del uso de algoritmos de clasificación, en concreto árboles de decisión, en la empresa. ¡Detectaremos usuarios que traten de defraudarnos!
 
-1. Detección de fraude mediante regresión logística.
-2. Detección de fraude mediante árboles de decisión, y random forests.
+1. Detección de fraude mediante regresión logística, árboles de decisión, y random forests.
+2. ¿Porqué un empleado se va de mi empresa?
 
 Clustering
 ----------
