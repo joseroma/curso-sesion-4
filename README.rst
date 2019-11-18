@@ -53,7 +53,7 @@ Clustering
 
 Finalmente veremos clustering, y alguno de los usos que pueden tener en la empresa como:
 
-1. Elige el mejor vino, ¡con inteligencia artificial!
+1. Aprende a escoger vinos, ¡con inteligencia artificial!
 2. Agrupar clientes según sus compras anuales
 
 
