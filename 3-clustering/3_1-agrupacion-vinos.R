@@ -22,6 +22,7 @@ library(GGally)
 library(knitr)
 library(dplyr)
 library(factoextra)
+set.seed(1234)
 ##    Leemos archivo
 wines <- read.csv("Wine.csv")
 
@@ -101,16 +102,79 @@ ggplot(wines, aes(x=Total_Phenols, y=Flavanoids)) +
 df <- winesNorm
 
 
-###     Hierarchical Clustering
-res <- hcut(df, k = 4, stand = TRUE)
+###     Hierarchical Clustering   ####
+#
+#   1. Comprobamos la k que queremos
+#
+######################################
 
-fviz_dend(res, rect = TRUE)
+##    Diagrama de codo
+fviz_nbclust(df , hcut, method = "wss") +
+  geom_vline(xintercept = 4, linetype = 2)+
+  labs(subtitle = "Elbow method ")
+#ggsave("WSS.png", plot = last_plot())
 
-fviz_silhouette(res)
+##    Índice de Silhouette
+fviz_nbclust(df, hcut, method = "silhouette")+ 
+  labs(subtitle = "Silhouette method") 
+#ggsave("silhouette.png", plot = last_plot())
 
-fviz_cluster(res)
 
-###     K-Means
+
+# Elegimos 3 grupos, puesto que:
+#
+#   - Es el mejor resultado de silhouette
+#   - Buen resultado según wcc
+#
+
+
+###     Hierarchical Clustering   ####
+#
+#   2. Hacemos las agrupaciones
+#
+######################################
+
+##    Hacemos agrupación
+grupos <- hcut(df, k = 3, stand = TRUE)
+
+##    Podemos representar el índice de silhouette 
+##    para cada punto, teniendo ya el número de k
+fviz_silhouette(grupos)
+
+##    Visualizamos los grupos creados en el árbol
+fviz_dend(grupos, rect = TRUE)
+
+##    Finalmente vemos las agrupaciones en el gráfico
+
+fviz_cluster(grupos)
+
+##    Extraemos perfiles para los grupos
+hmodel_n4<-eclust(df, FUNcluster="hclust", k=3, hc_metric="euclidean", hc_method="complete")
+mean_df <- aggregate(df, by=list(hmodel_n4$cluster), mean) %>% mutate(metric = "mean")
+median_df <- aggregate(df, by=list(hmodel_n4$cluster), median)%>% mutate(metric = "median")
+max_df <- aggregate(df, by=list(hmodel_n4$cluster), max)%>% mutate(metric = "max")
+min_df <- aggregate(df, by=list(hmodel_n4$cluster), min)%>% mutate(metric = "min")
+result <- rbind(mean_df, median_df, max_df, min_df)
+
+##    Vemos como se distribuyen las clases para cada columna
+ggpairs(cbind(df, Cluster=as.factor(grupos$cluster)),
+        columns=1:6, aes(colour=Cluster, alpha=0.5),
+        lower=list(continuous="points"),
+        upper=list(continuous="blank"),
+        axisLabels="none", switch="both") +
+        theme_bw()
+
+
+# Distinguimos claramente los 3 grupos, podemos afirmar que
+# hemos encontrado 3 grupos claramente diferenciados de vinos, 
+# que ahora ya podremos clasificar, y elegir en base a nuestras 
+# preferencias.
+
+###            K-means            ####
+#
+#   1. Comprobamos la k que queremos
+#
+######################################
 
 ##    Diagrama de codo
 fviz_nbclust(df , kmeans, method = "wss") +
@@ -123,30 +187,60 @@ fviz_nbclust(df, kmeans, method = "silhouette")+
   labs(subtitle = "Silhouette method") 
 #ggsave("silhouette.png", plot = last_plot())
 
-##    Gap statistic
-fviz_nbclust(df, kmeans, nstart = 25,  method = "gap_stat", nboot = 50)+ 
-  labs(subtitle = "Gap statistic method")
-#ggsave(paste("metrics/best_k_", i, ".png", sep=""), plot = last_plot())
+
+# Elegimos 3 grupos, puesto que:
+#
+#   - Es el mejor resultado de silhouette
+#   - Buen resultado según wcc
+#
 
 
+###             K-Means           ####
+#
+#   2. Hacemos las agrupaciones
+#
+######################################
 
-# Execution of k-means with k=2
-set.seed(1234)
-wines_k2 <- kmeans(winesNorm, centers=2)
+##    Hacemos agrupación
+grupos <- kmeans(df, centers=3)
 
+##    Podemos representar el índice de silhouette 
+##    para cada punto, teniendo ya el número de k
+fviz_silhouette(grupos)
 
+##    Visualizamos los grupos creados en el árbol
+fviz_dend(grupos, rect = TRUE)
 
-# Execution of k-means with k=3
-set.seed(1234)
+##    Finalmente vemos las agrupaciones en el gráfico
 
-wines_k3 <- kmeans(winesNorm, centers=3)
+fviz_cluster(grupos)
 
-# Mean values of each cluster
-aggregate(wines, by=list(wines_k3$cluster), mean)
+##    Extraemos perfiles para los grupos
+hmodel_n4<-eclust(df, FUNcluster="hclust", k=3, hc_metric="euclidean", hc_method="complete")
+mean_df <- aggregate(df, by=list(hmodel_n4$cluster), mean) %>% mutate(metric = "mean")
+median_df <- aggregate(df, by=list(hmodel_n4$cluster), median)%>% mutate(metric = "median")
+max_df <- aggregate(df, by=list(hmodel_n4$cluster), max)%>% mutate(metric = "max")
+min_df <- aggregate(df, by=list(hmodel_n4$cluster), min)%>% mutate(metric = "min")
+result <- rbind(mean_df, median_df, max_df, min_df)
 
-ggpairs(cbind(wines, Cluster=as.factor(wines_k3$cluster)),
+##    Vemos como se distribuyen las clases para cada columna
+ggpairs(cbind(df, Cluster=as.factor(grupos$cluster)),
         columns=1:6, aes(colour=Cluster, alpha=0.5),
         lower=list(continuous="points"),
         upper=list(continuous="blank"),
         axisLabels="none", switch="both") +
   theme_bw()
+
+
+# Distinguimos claramente los 3 grupos, podemos afirmar que
+# hemos encontrado 3 grupos claramente diferenciados de vinos, 
+# que ahora ya podremos clasificar, y elegir en base a nuestras 
+# preferencias.
+
+
+
+
+
+
+
+
