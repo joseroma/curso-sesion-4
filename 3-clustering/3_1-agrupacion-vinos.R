@@ -22,6 +22,7 @@ library(GGally)
 library(knitr)
 library(dplyr)
 library(factoextra)
+library(cluster)
 set.seed(1234)
 ##    Leemos archivo
 wines <- read.csv("Wine.csv")
@@ -155,20 +156,19 @@ median_df <- aggregate(df, by=list(hmodel_n4$cluster), median)%>% mutate(metric 
 max_df <- aggregate(df, by=list(hmodel_n4$cluster), max)%>% mutate(metric = "max")
 min_df <- aggregate(df, by=list(hmodel_n4$cluster), min)%>% mutate(metric = "min")
 result <- rbind(mean_df, median_df, max_df, min_df)
+result
 
 ##    Vemos como se distribuyen las clases para cada columna
 ggpairs(cbind(df, Cluster=as.factor(grupos$cluster)),
         columns=1:6, aes(colour=Cluster, alpha=0.5),
         lower=list(continuous="points"),
-        upper=list(continuous="blank"),
+        upper=list(continuous="cor"),
         axisLabels="none", switch="both") +
         theme_bw()
 
 
-# Distinguimos claramente los 3 grupos, podemos afirmar que
-# hemos encontrado 3 grupos claramente diferenciados de vinos, 
-# que ahora ya podremos clasificar, y elegir en base a nuestras 
-# preferencias.
+# Podemos concluir que hay 3 grupos claramente
+# diferenciados.
 
 ###            K-means            ####
 #
@@ -206,14 +206,11 @@ grupos <- kmeans(df, centers=3)
 
 ##    Podemos representar el índice de silhouette 
 ##    para cada punto, teniendo ya el número de k
-fviz_silhouette(grupos)
-
-##    Visualizamos los grupos creados en el árbol
-fviz_dend(grupos, rect = TRUE)
+sil <- silhouette(grupos$cluster, dist(df))
+fviz_silhouette(sil)
 
 ##    Finalmente vemos las agrupaciones en el gráfico
-
-fviz_cluster(grupos)
+fviz_cluster(grupos, df)
 
 ##    Extraemos perfiles para los grupos
 hmodel_n4<-eclust(df, FUNcluster="hclust", k=3, hc_metric="euclidean", hc_method="complete")
@@ -222,20 +219,21 @@ median_df <- aggregate(df, by=list(hmodel_n4$cluster), median)%>% mutate(metric 
 max_df <- aggregate(df, by=list(hmodel_n4$cluster), max)%>% mutate(metric = "max")
 min_df <- aggregate(df, by=list(hmodel_n4$cluster), min)%>% mutate(metric = "min")
 result <- rbind(mean_df, median_df, max_df, min_df)
+result
 
 ##    Vemos como se distribuyen las clases para cada columna
 ggpairs(cbind(df, Cluster=as.factor(grupos$cluster)),
         columns=1:6, aes(colour=Cluster, alpha=0.5),
         lower=list(continuous="points"),
-        upper=list(continuous="blank"),
+        upper=list(continuous="cor"),
         axisLabels="none", switch="both") +
   theme_bw()
 
 
-# Distinguimos claramente los 3 grupos, podemos afirmar que
-# hemos encontrado 3 grupos claramente diferenciados de vinos, 
-# que ahora ya podremos clasificar, y elegir en base a nuestras 
-# preferencias.
+# Al igual que antes, distinguimos claramente 3 grupos,
+# notamos ciertas mejoras en la agrupación, especialmente
+# en la representación gráfica de los puntos/clusters al igual
+# que en la gráfica final, en la distribución de grupos por columna
 
 
 
