@@ -20,7 +20,7 @@ library(dplyr)
 library(ggplot2)
 set.seed(1234)
 # Cargamos los datos
-dataset = read.csv('50_Startups.csv')
+dataset = read.csv('50-startups.csv')
 
 # Revisamos los datos
 View(dataset)
