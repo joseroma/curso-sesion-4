@@ -15,6 +15,7 @@
 ##########################################################
 
 # Cargamos las librerías
+library(tidyverse)
 library(ranger)
 library(caret)
 library(data.table)
@@ -175,7 +176,7 @@ time.taken
 varimp <- data.frame(rf_model$importance)
 
 ##   Plot importancia de variables
-vi1 <- ggplot(varimp, aes(x=reorder(rownames(varimp),IncNodePurity), y=IncNodePurity)) +
+ggplot(varimp, aes(x=reorder(rownames(varimp),MeanDecreaseAccuracy), y=MeanDecreaseAccuracy)) +
   geom_bar(stat="identity", fill="tomato", colour="black") +
   coord_flip() + theme_bw(base_size = 8) +
   labs(title="Prediction using RandomForest with 100 trees", subtitle="Variable importance (IncNodePurity)", x="Variable", y="Variable importance (IncNodePurity)")

@@ -40,16 +40,6 @@ df$JobRole = factor(df$JobRole, levels = c('Healthcare Representative', 'Human R
 df$Department = factor(df$Department, levels = c("Human Resources","Research & Development", "Sales"  ), labels = c(0, 1, 2))    
 df$EducationField = factor(df$EducationField, levels = c("Human Resources", "Life Sciences", "Marketing", "Medical", "Other", "Technical Degree"), labels = c(0, 1, 2, 3, 4, 5))
 
-
-
-
-
-##     Convertimos a factor todas aquellas variables que lo necesiten
-cols <- c("Education", "EnvironmentSatisfaction", "JobInvolvement", "JobLevel",
-          "JobSatisfaction", "PerformanceRating", "RelationshipSatisfaction", 
-          "StockOptionLevel", "TrainingTimesLastYear", "WorkLifeBalance")
-df[cols] <- lapply(df[cols], factor)
-
 ##    Eliminamos variables innecesarias
 cols <- c("Over18", "EmployeeNumber", "EmployeeCount", "Generation", "Educational_Levels", "CatYearsManager")
 df[cols] <- NULL
@@ -61,9 +51,6 @@ indice_datos_train <- createDataPartition(df$Attrition, p=0.8,list=FALSE, times=
 train <- df[indice_datos_train,]
 test <- df[-indice_datos_train,]
 
-levels(train$Attrition) <- c(0,1)
-levels(test$Attrition) <- c(0,1)
-
 
 ##    Comprobamos que se mantengan las proporciones entre bajas
 prop_train <- train %>% select(Attrition) %>% group_by(Attrition) %>% summarize(n=n()) %>% mutate(pct=round(prop.table(n), 2))
@@ -71,6 +58,20 @@ prop_test <- test %>% select(Attrition) %>% group_by(Attrition) %>% summarize(n=
 
 prop_train
 prop_test
+
+## Esta transformación de datos es necesaria para usar XGBoost
+##    Transform data in matrix
+xgb_train <- train %>% 
+  as.matrix() %>% 
+  mapply(FUN=as.numeric) %>% 
+  matrix(ncol=ncol(train), nrow=nrow(train))
+xgb_test <- test %>% 
+  as.matrix() %>% 
+  mapply(FUN=as.numeric) %>% 
+  matrix(ncol=ncol(test), nrow=nrow(test))
+
+colnames(xgb_train) <- colnames(train)
+colnames(xgb_test) <- colnames(test)
 
 
 #################################################################
