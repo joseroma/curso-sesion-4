@@ -16,7 +16,6 @@
 
 # Load and install packages
 source("../install_load_pkgs.R")
-install.packages("h2o", repos=(c("http://s3.amazonaws.com/h2o-release/h2o/master/1497/R", getOption("repos"))))
 packages <- c("tidyverse","corrplot", "gridExtra", "GGally", "knitr", "dplyr", "factoextra", "cluster")
 ipak(packages)
 set.seed(1234)
@@ -216,6 +215,7 @@ max_df <- aggregate(df, by=list(hmodel_n4$cluster), max)%>% mutate(metric = "max
 min_df <- aggregate(df, by=list(hmodel_n4$cluster), min)%>% mutate(metric = "min")
 result <- rbind(mean_df, median_df, max_df, min_df)
 result
+
 
 ##    Vemos como se distribuyen las clases para cada columna
 ggpairs(cbind(df, Cluster=as.factor(grupos$cluster)),
