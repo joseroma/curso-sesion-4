@@ -15,30 +15,14 @@
 ##########################################################
 
 # Cargamos las librerías
-library(tidyverse)
-library(ranger)
-library(caret)
-library(data.table)
-library(caTools)
-library(pROC)
-library(rpart)
-library(rpart.plot)
-library(randomForest)
-library(xgboost)
-library(precrec)
-library(gridExtra)
-library(neuralnet)
-library(dplyr)
-library(reshape2)
-library(ggplot2)
-library("GGally")
+source("../install_load_pkgs.R")
+install.packages("h2o", repos=(c("http://s3.amazonaws.com/h2o-release/h2o/master/1497/R", getOption("repos"))))
+packages <- c("tidyverse", "ranger", "caret", "data.table", "caTools", "pROC", "rpart", "rpart.plot", "randomForest", "xgboost", "precrec", "gridExtra", "neuralnet", "dplyr", "reshape2", "ggplot2", "GGally", "h2o")
+ipak(packages)
+
 # The following two commands remove any previously installed H2O packages for R.
 #if ("package:h2o" %in% search()) { detach("package:h2o", unload=TRUE) }
 #if ("h2o" %in% rownames(installed.packages())) { remove.packages("h2o") }
-
-# Next, we download, install and initialize the H2O package for R.
-#install.packages("h2o", repos=(c("http://s3.amazonaws.com/h2o-release/h2o/master/1497/R", getOption("repos"))))
-library(h2o)
 
 set.seed(1234)
 

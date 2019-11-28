@@ -14,15 +14,11 @@
 ##
 ##########################################################
 
-# Cargamos las librerías
-library(tidyverse)
-library(corrplot)
-library(gridExtra)
-library(GGally)
-library(knitr)
-library(dplyr)
-library(factoextra)
-library(cluster)
+# Load and install packages
+source("../install_load_pkgs.R")
+install.packages("h2o", repos=(c("http://s3.amazonaws.com/h2o-release/h2o/master/1497/R", getOption("repos"))))
+packages <- c("tidyverse","corrplot", "gridExtra", "GGally", "knitr", "dplyr", "factoextra", "cluster")
+ipak(packages)
 set.seed(1234)
 ##    Leemos archivo
 wines <- read.csv("Wine.csv")

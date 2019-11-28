@@ -6,23 +6,11 @@
 
 
 
-### Cargamos las librerías
-library(ranger)
-library(caret)
-library(data.table)
-library(caTools)
-library(pROC)
-library(rpart)
-library(rpart.plot)
-library(randomForest)
-library(xgboost)
-library(precrec)
-library(gridExtra)
-library(neuralnet)
-library(dplyr)
-library(reshape2)
-library(ggplot2)
-library("GGally")
+# Load and install packages
+source("../install_load_pkgs.R")
+install.packages("h2o", repos=(c("http://s3.amazonaws.com/h2o-release/h2o/master/1497/R", getOption("repos"))))
+packages <- c("ranger","caret", "data.table", "caTools", "pROC", "rpart", "rpart.plot", "randomForest", "xgboost", "precrec", "gridExtra", "neuralnet", "dplyr", "reshape2", "ggplot2", "GGally", "h2o")
+ipak(packages)
 
 ##    Leemos los datos
 df <- read.csv("Employee-Attrition.csv")

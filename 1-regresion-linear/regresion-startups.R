@@ -15,9 +15,9 @@
 ##########################################################
 
 # Cargamos las librerías
-library(caret)
-library(dplyr)
-library(ggplot2)
+source("../install_load_pkgs.R")
+packages <- c("ggplot2", "dplyr", "caret")
+ipak(packages)
 set.seed(1234)
 # Cargamos los datos
 dataset = read.csv('50-startups.csv')
